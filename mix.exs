@@ -3,7 +3,7 @@ defmodule Networkex.MixProject do
 
   def project do
     [
-      app: :network_analyser,
+      app: :networkex,
       version: "0.1.0",
       elixir: "~> 1.8",
       start_permanent: Mix.env() == :prod,
