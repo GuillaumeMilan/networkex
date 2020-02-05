@@ -23,7 +23,7 @@ be found at [https://hexdocs.pm/network_analyser](https://hexdocs.pm/network_ana
 # Usage example
 
 Assuming `example.txt` is containing an output result of the `tcpdump` command,
-you can use the parsers as follows:
+you can use the parsers as follow:
 
 ```
 streamed_packets = Parser.Tcpdump.stream_tcpdump("example.txt")
