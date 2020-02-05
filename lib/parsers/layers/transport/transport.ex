@@ -1,4 +1,4 @@
-defmodule Parser.Transport do
+defmodule Networkex.Parser.Transport do
   def get_module_from_protocol(protocol) do
     case protocol do
       6 -> Tcp

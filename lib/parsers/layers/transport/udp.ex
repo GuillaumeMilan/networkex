@@ -1,4 +1,4 @@
-defmodule Parser.Udp do
+defmodule Networkex.Parser.Udp do
   def parse_message(message) do
     [
       src_port1, src_port2,

@@ -1,4 +1,4 @@
-defmodule Parser.Datalink do
+defmodule Networkex.Parser.Datalink do
   def parse_message(message) do
     [
       cda1,cda2,cda3,cda4,cda5,cda6,

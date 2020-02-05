@@ -1,17 +1,17 @@
-defmodule Parser.Tcpdump do
+defmodule Networkex.Parser.Tcpdump do
   require Logger
   @moduledoc """
-  Parser.Tcpdump.stream_tcpdump("data/tmp/test.txt") |> Enum.filter(fn
+  Networkex.Parser.Tcpdump.stream_tcpdump("data/tmp/test.txt") |> Enum.filter(fn
     %{header: %{protocol_info: [head|_]}} -> head == "UDP,"
     _ -> false
   end) |> Enum.map(fn %{header: %{from: from, to: to}} -> %{from: from, to: to} end) |> Enum.uniq
 
-  Parser.Tcpdump.stream_tcpdump("data/tmp/test.txt") |> Enum.filter(fn
+  Networkex.Parser.Tcpdump.stream_tcpdump("data/tmp/test.txt") |> Enum.filter(fn
     %{header: %{from: _from, to: _to}}-> true
     _ -> false
   end) |> Enum.map(fn %{header: %{from: from, to: to}} -> %{from: from, to: to} end) |> Enum.uniq
 
-  Parser.Tcpdump.stream_tcpdump("data/tmp/ranked.txt") |> Stream.map(fn %{message: message} -> Parser.Applier.extract_layers_info(message, [Network, Transport]) end) |> Stream.filter(fn x -> x[Transport][:protocol] == :udp end) |> Enum.take 20
+  Networkex.Parser.Tcpdump.stream_tcpdump("data/tmp/ranked.txt") |> Stream.map(fn %{message: message} -> Networkex.Parser.Applier.extract_layers_info(message, [Network, Transport]) end) |> Stream.filter(fn x -> x[Transport][:protocol] == :udp end) |> Enum.take 20
   """
 
   def stream_tcpdump(file_name) do
@@ -25,7 +25,7 @@ defmodule Parser.Tcpdump do
         end
       end,
         fn acc -> if acc != %{header: :empty} do
-          Logger.error("LolPacketReader.Parser.stream_tcpdump from #{file_name} last line not empty last packet ignored") 
+          Logger.error("Networkex.Parser.stream_tcpdump from #{file_name} last line not empty last packet ignored") 
           IO.inspect(acc)
         end end)
   end

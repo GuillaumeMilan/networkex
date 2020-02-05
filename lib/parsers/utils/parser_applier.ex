@@ -1,4 +1,4 @@
-defmodule Parser.Applier do
+defmodule Networkex.Parser.Applier do
 
   @type layer :: Datalink | Network | Transport
   @type info :: %{
@@ -30,15 +30,15 @@ defmodule Parser.Applier do
     end)
   end
   def extract_layer_info(Datalink, message, _) do
-    info = Parser.Datalink.parse_message(message)
+    info = Networkex.Parser.Datalink.parse_message(message)
   end
   def extract_layer_info(Network, message, _) do
-    info = Parser.Network.parse_message(message)
+    info = Networkex.Parser.Network.parse_message(message)
   end
   def extract_layer_info(Transport, message, %{protocol: protocol}) do
-    module = Parser.Transport.get_module_from_protocol(protocol)
+    module = Networkex.Parser.Transport.get_module_from_protocol(protocol)
     if module != :undefined do
-      info = apply(Module.concat([Parser, module]), :parse_message, [message])
+      info = apply(Module.concat([Networkex.Parser, module]), :parse_message, [message])
     else
       %{message: message}
     end

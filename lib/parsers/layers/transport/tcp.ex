@@ -1,4 +1,4 @@
-defmodule Parser.Tcp do
+defmodule Networkex.Parser.Tcp do
   def parse_message(message) do
     [
       src_port1, src_port2, dst_port1, dst_port2,

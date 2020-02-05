@@ -1,4 +1,4 @@
-defmodule Parser.Network do
+defmodule Networkex.Parser.Network do
   def parse_message(message) do
     [version_byte|_] = message
     <<version::4, _::4>> = Base.decode16!(String.upcase(version_byte))
