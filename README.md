@@ -25,7 +25,7 @@ be found at [https://hexdocs.pm/network_analyser](https://hexdocs.pm/network_ana
 Assuming `example.txt` is containing an output result of the `tcpdump` command,
 you can use the parsers as follow:
 
-```
+```elixir
 streamed_packets = Parser.Tcpdump.stream_tcpdump("example.txt")
 translated_packets = Stream.map(streamed_packets, fn %{message: message} -> Parser.Applier.extract_layers_info(message, [Network, Transport]) end)
 translated_packets |> Enum.take 1
